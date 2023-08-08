@@ -14,6 +14,11 @@ For example:
 This extension contributes the following settings:
 
 * `dollar-blue-ticker.interval`: Intervalo de actualizacion
+
+### 0.0.2
+Fix 
+
+
 ### 0.0.1
 
 Realease

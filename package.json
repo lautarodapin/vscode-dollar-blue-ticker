@@ -4,6 +4,9 @@
     "publisher": "LautaroDapino",
     "description": "",
     "version": "0.0.4",
+    "repository": {
+        "url": "https://github.com/lautarodapin/vscode-dollar-blue-ticker"
+    },
     "engines": {
         "vscode": "^1.79.0"
     },

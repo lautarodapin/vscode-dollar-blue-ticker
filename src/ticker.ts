@@ -47,7 +47,7 @@ export class Ticker {
                 const object = await fetch(url).then(response => response.json() as unknown as JsonResponse);
 
                 // set the status bar item text using the template
-                this.item.text = `Dolar blue AVG: ${object.blue.value_avg}`;
+                this.item.text = `Dolar: ${object.blue.value_sell} - ${new Date(object.last_update).toLocaleDateString("es-ar", { month: "short", day: "numeric", hour: "numeric", minute: "numeric" })}`;
 
                 if (this.lastAvgPrice && this.lastAvgPrice > object.blue.value_avg) {
                     this.item.color = this.lowerColor;

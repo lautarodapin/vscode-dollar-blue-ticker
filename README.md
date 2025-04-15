@@ -15,6 +15,10 @@ This extension contributes the following settings:
 
 * `dollar-blue-ticker.interval`: Intervalo de actualizacion
 
+
+### 0.0.5
+Change to use official dolar
+
 ### 0.0.2
 Fix 
 

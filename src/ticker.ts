@@ -6,7 +6,6 @@ import * as vscode from 'vscode';
 
 // the web request handler
 
-
 // represents a ticker object
 export class Ticker {
     // the tickers status bar item
@@ -15,11 +14,10 @@ export class Ticker {
     // the definition properties
     interval: number;
 
-    higherColor: string = "lightgreen";
-    lowerColor: string = "coral";
+    higherColor: string = 'lightgreen';
+    lowerColor: string = 'coral';
 
     lastAvgPrice: number | undefined;
-
 
     // construct a new ticker based on a ticker definition
     constructor(config?: TickerConfiguration) {
@@ -44,12 +42,17 @@ export class Ticker {
                 // get the 'base' service URL
                 let url = `https://api.bluelytics.com.ar/v2/latest`;
 
-                const object = await fetch(url).then(response => response.json() as unknown as JsonResponse);
+                const object = await fetch(url).then((response) => response.json() as unknown as JsonResponse);
 
                 // set the status bar item text using the template
-                this.item.text = `Dolar: ${object.blue.value_sell} - ${new Date(object.last_update).toLocaleDateString("es-ar", { month: "short", day: "numeric", hour: "numeric", minute: "numeric" })}`;
+                this.item.text = `Dolar: ${object.oficial.value_sell} - ${new Date(object.last_update).toLocaleDateString('es-ar', {
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                })}`;
 
-                if (this.lastAvgPrice && this.lastAvgPrice > object.blue.value_avg) {
+                if (this.lastAvgPrice && this.lastAvgPrice > object.oficial.value_avg) {
                     this.item.color = this.lowerColor;
                 } else if (this.lastAvgPrice) {
                     this.item.color = this.higherColor;
@@ -57,7 +60,6 @@ export class Ticker {
 
                 // make sure the status bar item is visible
                 this.item.show();
-
             } catch (error) {
                 if (error instanceof Error) {
                     // log the error and hide the status bar item
@@ -66,25 +68,23 @@ export class Ticker {
                 this.item.hide();
             }
         })();
-
     }
-
 }
 
 interface JsonResponse {
-    oficial: Dollar
-    blue: Dollar
-    oficial_euro: Dollar
-    blue_euro: Dollar
-    last_update: string
+    oficial: Dollar;
+    blue: Dollar;
+    oficial_euro: Dollar;
+    blue_euro: Dollar;
+    last_update: string;
 }
 
 interface Dollar {
-    value_avg: number
-    value_sell: number
-    value_buy: number
+    value_avg: number;
+    value_sell: number;
+    value_buy: number;
 }
 
 export interface TickerConfiguration {
-    interval: number
+    interval: number;
 }
